@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTheme } from 'styled-components';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { Acessory } from '../../components/Acessory';
@@ -41,13 +42,19 @@ import {
   RentalPriceTotal
 } from './styles';
 
+
 export function SchedulingDetails() {
+  const navigation = useNavigation()
   const { colors } = useTheme()
+
+  function handleConfirmRent() {
+    navigation.navigate('SchedulingComplete')
+  }
 
   return (
     <SchedulingDetailsContainer>
       <SchedulingDetailsHeader>
-        <BackButton color={colors.title} onPress={() => { }} />
+        <BackButton color={colors.title} onPress={() => navigation.goBack()} />
       </SchedulingDetailsHeader>
       <CarImages>
         <ImageSlider imagesUrl={['https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png', 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png', 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png', 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png']} />
@@ -94,7 +101,7 @@ export function SchedulingDetails() {
         </SchedulePriceContainer>
       </CarContent>
       <DetailsFooter>
-        <Button title='Confirmar' color={colors.success} />
+        <Button title='Confirmar' color={colors.success} onPress={handleConfirmRent} />
       </DetailsFooter>
     </SchedulingDetailsContainer>
   );

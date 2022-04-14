@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { StatusBar, useWindowDimensions } from 'react-native';
 
 import BrandSvg from '../../assets/logo_background_gray.svg';
@@ -14,7 +15,9 @@ import {
   SchedulingCompleteFooter
 } from './styles';
 
+
 export function SchedulingComplete() {
+  const navigation = useNavigation()
   const { width } = useWindowDimensions()
 
   return (
@@ -30,7 +33,7 @@ export function SchedulingComplete() {
           pegar o seu automóvel.
         </SchedulingCompleteMessage>
         <SchedulingCompleteFooter>
-          <ConfirmButton title="OK" />
+          <ConfirmButton title="OK" onPress={() => navigation.navigate('Home')} />
         </SchedulingCompleteFooter>
       </SchedulingCompleteContent>
     </SchedulingCompleteContainer>

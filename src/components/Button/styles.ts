@@ -3,7 +3,7 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 
 interface ButtonContainerProps {
-  color?: string;
+  color: string;
 }
 
 export const ButtonContainer = styled(RectButton)<ButtonContainerProps>`
@@ -13,7 +13,7 @@ export const ButtonContainer = styled(RectButton)<ButtonContainerProps>`
   align-items: center;
   justify-content: center;
 
-  background-color: ${({ color, theme }) => color ? color : theme.colors.main};
+  background-color: ${({ color }) => color};
 `
 
 export const ButtonTitle = styled.Text`

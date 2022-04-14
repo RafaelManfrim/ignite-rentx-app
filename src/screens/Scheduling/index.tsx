@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
@@ -19,13 +20,18 @@ import {
 } from './styles';
 
 export function Scheduling() {
+  const navigation = useNavigation()
   const { colors } = useTheme()
+
+  function handleSchedulingDetails() {
+    navigation.navigate('SchedulingDetails')
+  }
 
   return (
     <SchedulingContainer>
       <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
       <SchedulingHeader>
-        <BackButton color={colors.shape} />
+        <BackButton color={colors.shape} onPress={() => navigation.goBack()} />
         <SchedulingHeaderTitle>
           Escolha uma {'\n'}
           data de início e {'\n'}
@@ -47,7 +53,7 @@ export function Scheduling() {
         <Calendar />
       </SchedulingContent>
       <SchedulingFooter>
-        <Button title='Confirmar' />
+        <Button title='Confirmar' onPress={handleSchedulingDetails} />
       </SchedulingFooter>
     </SchedulingContainer>
   );

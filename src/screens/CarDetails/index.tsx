@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
 import { Acessory } from '../../components/Acessory';
@@ -31,12 +32,17 @@ import {
 } from './styles';
 
 export function CarDetails() {
+  const navigation = useNavigation()
   const { colors } = useTheme()
+
+  function handleScheduling() {
+    navigation.navigate('Scheduling')
+  }
 
   return (
     <CarDetailsContainer>
       <CarDetailsHeader>
-        <BackButton color={colors.title} onPress={() => { }} />
+        <BackButton color={colors.title} onPress={() => navigation.goBack()} />
       </CarDetailsHeader>
       <CarImages>
         <ImageSlider imagesUrl={['https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png', 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png', 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png', 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png']} />
@@ -65,7 +71,7 @@ export function CarDetails() {
         </AboutCar>
       </CarContent>
       <DetailsFooter>
-        <Button title='Confirmar' />
+        <Button title='Escolher período do aluguel' onPress={handleScheduling} />
       </DetailsFooter>
     </CarDetailsContainer>
   );
