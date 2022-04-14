@@ -3,10 +3,10 @@ import { RFValue } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 
 interface ButtonContainerProps {
-  color: string;
+  color?: string;
 }
 
-export const ButtonContainer = styled(RectButton as any) <ButtonContainerProps>`
+export const ButtonContainer = styled(RectButton)<ButtonContainerProps>`
   width: 100%;
 
   padding: 19px;

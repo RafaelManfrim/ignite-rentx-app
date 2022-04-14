@@ -10,7 +10,7 @@ interface ConfirmButtonProps extends RectButtonProps {
 export function ConfirmButton({ title, ...rest }: ConfirmButtonProps) {
   return (
     <GestureHandlerRootView>
-      <ConfirmButtonContainer>
+      <ConfirmButtonContainer {...rest}>
         <ConfirmButtonTitle>{title}</ConfirmButtonTitle>
       </ConfirmButtonContainer>
     </GestureHandlerRootView>

@@ -1,18 +1,17 @@
 import React from 'react';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { GestureHandlerRootView, RectButtonProps } from 'react-native-gesture-handler';
 
 import { ButtonContainer, ButtonTitle } from './styles';
 
-interface ButtonProps {
+interface ButtonProps extends RectButtonProps {
   title: string;
   color?: string;
-  // onPress: () => void
 }
 
 export function Button({ title, color, ...rest }: ButtonProps) {
   return (
     <GestureHandlerRootView>
-      <ButtonContainer {...rest} color={color}>
+      <ButtonContainer color={color} {...rest}>
         <ButtonTitle>{title}</ButtonTitle>
       </ButtonContainer>
     </GestureHandlerRootView>

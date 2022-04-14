@@ -2,7 +2,7 @@ import { RectButton } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native'
 
-export const ConfirmButtonContainer = styled(RectButton as any)`
+export const ConfirmButtonContainer = styled(RectButton)`
   width: 80px;
   height: 56px;
   background-color: ${({ theme }) => theme.colors.shape_dark};
