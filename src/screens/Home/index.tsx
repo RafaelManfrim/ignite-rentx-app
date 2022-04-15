@@ -1,22 +1,39 @@
+import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
 import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
+import { api } from '../../services/api';
 import Logo from '../../assets/logo.svg';
-
 import { Car } from '../../components/Car';
+import { Loading } from '../../components/Loading';
 
 import { HomeContainer, HomeHeader, HeaderContent, TotalCars, CarList } from './styles';
+import { CarDTO } from '../../dtos/CarDTO';
 
 export function Home() {
-  const car = { name: 'A3', brand: 'AUDI', rent: { price: 40, period: 'AO DIA' }, thumbnail: 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png' }
-
+  const [cars, setCars] = useState<CarDTO[]>([])
+  const [loading, setLoading] = useState(true)
   const navigation = useNavigation()
 
   function handleCarDetails() {
     navigation.navigate("CarDetails")
   }
+
+  useEffect(() => {
+    async function loadCars() {
+      try {
+        const response = await api.get("/cars")
+        setCars(response.data)
+      } catch (err) {
+        console.log(err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadCars()
+  }, [])
 
   return (
     <HomeContainer>
@@ -24,12 +41,16 @@ export function Home() {
       <HomeHeader>
         <HeaderContent>
           <Logo height={RFValue(12)} width={RFValue(108)} />
-          <TotalCars>Total de 8 carros</TotalCars>
+          <TotalCars>Total de {cars.length} carros</TotalCars>
         </HeaderContent>
       </HomeHeader>
-      <CarList data={[1, 2, 3, 4, 5, 6, 7, 8]} keyExtractor={item => String(item)} renderItem={({ item }) => (
-        <Car brand={car.brand} name={car.name} rent={car.rent} thumbnail={car.thumbnail} onPress={handleCarDetails} />
-      )} />
+      {loading ? (
+        <Loading />
+      ) : (
+        <CarList data={cars} keyExtractor={item => item.id} renderItem={({ item }) => (
+          <Car brand={item.brand} name={item.name} rent={item.rent} thumbnail={item.thumbnail} onPress={handleCarDetails} />
+        )} />
+      )}
     </HomeContainer>
   );
 }

@@ -1,6 +1,7 @@
 import { FlatList } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native'
+import { CarDTO } from '../../dtos/CarDTO';
 
 export const HomeContainer = styled.View`
     background: ${({ theme }) => theme.colors.background_primary};
