@@ -29,9 +29,9 @@ export const TotalCars = styled.Text`
     font-family: ${({ theme }) => theme.fonts.primary_400};
 `;
 
-export const CarList = styled(FlatList).attrs({
+export const CarList: new () => FlatList<CarDTO> = styled(FlatList).attrs({
     contentContainerStyle: {
         padding: 24
     },
     showsVerticalScrollIndicator: false
-})``;
+})`` as any;

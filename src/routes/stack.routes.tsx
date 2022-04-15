@@ -7,10 +7,15 @@ import { CarDetails } from '../screens/CarDetails';
 import { Scheduling } from '../screens/Scheduling';
 import { SchedulingDetails } from '../screens/SchedulingDetails';
 import { SchedulingComplete } from '../screens/SchedulingComplete';
+import { CarDTO } from '../dtos/CarDTO';
+
+export type CarDetailsParams = {
+  car: CarDTO
+}
 
 export type RootStackParamList = {
   Home: undefined;
-  CarDetails: undefined;
+  CarDetails: CarDetailsParams;
   Scheduling: undefined;
   SchedulingDetails: undefined;
   SchedulingComplete: undefined;

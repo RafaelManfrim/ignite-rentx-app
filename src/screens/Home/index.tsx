@@ -16,8 +16,8 @@ export function Home() {
   const [loading, setLoading] = useState(true)
   const navigation = useNavigation()
 
-  function handleCarDetails() {
-    navigation.navigate("CarDetails")
+  function handleCarDetails(car: CarDTO) {
+    navigation.navigate("CarDetails", { car })
   }
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export function Home() {
         <Loading />
       ) : (
         <CarList data={cars} keyExtractor={item => item.id} renderItem={({ item }) => (
-          <Car brand={item.brand} name={item.name} rent={item.rent} thumbnail={item.thumbnail} onPress={handleCarDetails} />
+          <Car brand={item.brand} name={item.name} rent={item.rent} thumbnail={item.thumbnail} fuel_type={item.fuel_type} onPress={() => handleCarDetails(item)} />
         )} />
       )}
     </HomeContainer>
