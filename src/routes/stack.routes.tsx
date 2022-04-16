@@ -13,11 +13,20 @@ export type CarDetailsParams = {
   car: CarDTO
 }
 
+export type SchedulingParams = {
+  car: CarDTO
+}
+
+export type SchedulingDetailsParams = {
+  car: CarDTO,
+  dates: string[]
+}
+
 export type RootStackParamList = {
   Home: undefined;
   CarDetails: CarDetailsParams;
-  Scheduling: undefined;
-  SchedulingDetails: undefined;
+  Scheduling: SchedulingParams;
+  SchedulingDetails: SchedulingDetailsParams;
   SchedulingComplete: undefined;
 };
 

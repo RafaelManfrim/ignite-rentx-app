@@ -1,18 +1,14 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
+import { StatusBar } from 'react-native';
 
-import { Acessory } from '../../components/Acessory';
+import { CarDetailsParams } from '../../routes/stack.routes';
+
+import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Button } from '../../components/Button';
-
-import SpeedSvg from '../../assets/speed.svg'
-import AccelerationSvg from '../../assets/acceleration.svg'
-import ForceSvg from '../../assets/force.svg'
-import GasolineSvg from '../../assets/gasoline.svg'
-import ExchangeSvg from '../../assets/exchange.svg'
-import PeopleSvg from '../../assets/people.svg'
 
 import {
   CarDetailsContainer,
@@ -27,48 +23,51 @@ import {
   CarRentPeriod,
   CarRentValue,
   AboutCar,
-  CarAcessoriesContainer,
+  CarAccessoriesContainer,
   DetailsFooter
 } from './styles';
+import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 
 export function CarDetails() {
   const navigation = useNavigation()
   const { colors } = useTheme()
+  const route = useRoute()
+  const { car } = route.params as CarDetailsParams
 
   function handleScheduling() {
-    navigation.navigate('Scheduling')
+    navigation.navigate('Scheduling', { car })
   }
 
   return (
     <CarDetailsContainer>
+      <StatusBar barStyle="dark-content" />
       <CarDetailsHeader>
         <BackButton color={colors.title} onPress={() => navigation.goBack()} />
       </CarDetailsHeader>
       <CarImages>
-        <ImageSlider imagesUrl={['https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png', 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png', 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png', 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png']} />
+        <ImageSlider imagesUrl={car.photos} />
       </CarImages>
       <CarContent>
         <Details>
           <CarDescription>
-            <CarDetailBrand>AUDI</CarDetailBrand>
-            <CarDetailName>A3</CarDetailName>
+            <CarDetailBrand>{car.brand}</CarDetailBrand>
+            <CarDetailName>{car.name}</CarDetailName>
           </CarDescription>
           <CarRent>
-            <CarRentPeriod>AO DIA</CarRentPeriod>
-            <CarRentValue>R$ 230,00</CarRentValue>
+            <CarRentPeriod>{car.rent.period}</CarRentPeriod>
+            <CarRentValue>{car.rent.price}</CarRentValue>
           </CarRent>
         </Details>
-        <CarAcessoriesContainer>
-          <Acessory name='Teste' icon={SpeedSvg} />
-          <Acessory name='Teste' icon={AccelerationSvg} />
-          <Acessory name='Teste' icon={ForceSvg} />
-          <Acessory name='Teste' icon={GasolineSvg} />
-          <Acessory name='Teste' icon={ExchangeSvg} />
-          <Acessory name='Teste' icon={PeopleSvg} />
-        </CarAcessoriesContainer>
-        <AboutCar>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, consequuntur unde. Dolor deserunt ullam cumque veniam voluptatibus beatae! Ipsam exercitationem repellat laborum perferendis asperiores cum quam omnis, optio ea voluptate.
-        </AboutCar>
+        <CarAccessoriesContainer>
+          {car.accessories.map((accessory) => (
+            <Accessory
+              name={accessory.name}
+              key={accessory.type}
+              icon={getAccessoryIcon(accessory.type)}
+            />
+          ))}
+        </CarAccessoriesContainer>
+        <AboutCar>{car.about}</AboutCar>
       </CarContent>
       <DetailsFooter>
         <Button title='Escolher período do aluguel' onPress={handleScheduling} />

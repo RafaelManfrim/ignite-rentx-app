@@ -1,7 +1,7 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native'
 
-export const AcessoryContainer = styled.View`
+export const AccessoryContainer = styled.View`
   width: 109px;
   height: 92px;
   justify-content: center;
@@ -11,8 +11,9 @@ export const AcessoryContainer = styled.View`
   margin-bottom: 8px;
 `
 
-export const AcessoryName = styled.Text`
+export const AccessoryName = styled.Text`
   font-family: ${({ theme }) => theme.fonts.primary_500};
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${RFValue(13)}px;
+  font-size: ${RFValue(12)}px;
+  margin-top: 4px;
 `

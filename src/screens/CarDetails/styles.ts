@@ -77,7 +77,7 @@ export const AboutCar = styled.Text`
   line-height: ${RFValue(22)}px;
 `;
 
-export const CarAcessoriesContainer = styled.View`
+export const CarAccessoriesContainer = styled.View`
   width: 100%;
   margin-top: 24px;
   flex-direction: row;
