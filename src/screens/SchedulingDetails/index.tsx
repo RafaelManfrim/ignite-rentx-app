@@ -99,7 +99,9 @@ export function SchedulingDetails() {
           </CarDescription>
           <CarRent>
             <CarRentPeriod>{car.rent.period}</CarRentPeriod>
-            <CarRentValue>{car.rent.price}</CarRentValue>
+            <CarRentValue>
+              {car.rent.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace('R$', 'R$ ')}
+            </CarRentValue>
           </CarRent>
         </Details>
         <CarAccessoriesContainer>
@@ -129,9 +131,13 @@ export function SchedulingDetails() {
           <SchedulePriceLabel>TOTAL</SchedulePriceLabel>
           <SchedulePriceDetails>
             <RentalPriceQuota>
-              {car.rent.price} x{dates.length} {dates.length === 1 ? 'diária' : 'diárias'}
+              {car.rent.price.toLocaleString('pt-BR', {
+                style: 'currency', currency: 'BRL'
+              }).replace('R$', 'R$ ')} x{dates.length} {dates.length === 1 ? 'diária' : 'diárias'}
             </RentalPriceQuota>
-            <RentalPriceTotal>{rentTotal}</RentalPriceTotal>
+            <RentalPriceTotal>
+              {rentTotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace('R$', 'R$ ')}
+            </RentalPriceTotal>
           </SchedulePriceDetails>
         </SchedulePriceContainer>
       </CarContent>

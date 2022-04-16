@@ -28,7 +28,9 @@ export function Car({ brand, name, rent, thumbnail, fuel_type, ...rest }: CarPro
         <ValueContainer>
           <RentValueContainer>
             <RentPeriod>{rent.period}</RentPeriod>
-            <RentValue>R$ {rent.price},00</RentValue>
+            <RentValue>
+              {rent.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace('R$', 'R$ ')}
+            </RentValue>
           </RentValueContainer>
           <FuelContainer>
             <MotorIcon />

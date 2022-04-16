@@ -9,6 +9,9 @@ import { ThemeProvider } from 'styled-components/native';
 import theme from './src/styles/theme';
 import { Routes } from './src/routes';
 
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
