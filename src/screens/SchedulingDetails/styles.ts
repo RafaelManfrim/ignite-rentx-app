@@ -68,7 +68,7 @@ export const CarRentValue = styled.Text`
   font-size: ${RFValue(24)}px;
 `;
 
-export const CarAcessoriesContainer = styled.View`
+export const CarAccessoriesContainer = styled.View`
   width: 100%;
   margin-top: 24px;
   flex-direction: row;

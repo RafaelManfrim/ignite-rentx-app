@@ -16,7 +16,10 @@ export function ImageSlider({ imagesUrl }: ImageSliderProps) {
         <ImageIndex active={false} />
       </ImageIndexes>
       <CarImageWrapper>
-        <CarImage source={{ uri: 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png' }} resizeMode='contain' />
+        {/* {imagesUrl.map((image, index) => (
+          <CarImage source={{ uri: image }} resizeMode='contain' key={index} />
+        ))} */}
+        <CarImage source={{ uri: imagesUrl[0] }} resizeMode='contain' />
       </CarImageWrapper>
     </ImageSliderContainer>
   );

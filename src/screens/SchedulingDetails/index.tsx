@@ -1,20 +1,17 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import { Acessory } from '../../components/Acessory';
+import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Button } from '../../components/Button';
 
-import SpeedSvg from '../../assets/speed.svg'
-import AccelerationSvg from '../../assets/acceleration.svg'
-import ForceSvg from '../../assets/force.svg'
-import GasolineSvg from '../../assets/gasoline.svg'
-import ExchangeSvg from '../../assets/exchange.svg'
-import PeopleSvg from '../../assets/people.svg'
+import { SchedulingDetailsParams } from '../../routes/stack.routes';
+import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 
 import {
   SchedulingDetailsContainer,
@@ -28,7 +25,7 @@ import {
   CarRent,
   CarRentPeriod,
   CarRentValue,
-  CarAcessoriesContainer,
+  CarAccessoriesContainer,
   SchedulingPeriod,
   CalendarIconContainer,
   DateInfo,
@@ -42,10 +39,11 @@ import {
   RentalPriceTotal
 } from './styles';
 
-
 export function SchedulingDetails() {
   const navigation = useNavigation()
+  const route = useRoute()
   const { colors } = useTheme()
+  const { car, dates } = route.params as SchedulingDetailsParams
 
   function handleConfirmRent() {
     navigation.navigate('SchedulingComplete')
@@ -53,31 +51,33 @@ export function SchedulingDetails() {
 
   return (
     <SchedulingDetailsContainer>
+      <StatusBar barStyle="dark-content" />
       <SchedulingDetailsHeader>
         <BackButton color={colors.title} onPress={() => navigation.goBack()} />
       </SchedulingDetailsHeader>
       <CarImages>
-        <ImageSlider imagesUrl={['https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png', 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png', 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png', 'https://w7.pngwing.com/pngs/475/362/png-transparent-audi-sportback-concept-car-audi-a3-sportback-2015-audi-s3-audi-compact-car-sedan-car.png']} />
+        <ImageSlider imagesUrl={car.photos} />
       </CarImages>
       <CarContent>
         <Details>
           <CarDescription>
-            <CarDetailBrand>AUDI</CarDetailBrand>
-            <CarDetailName>A3</CarDetailName>
+            <CarDetailBrand>{car.brand}</CarDetailBrand>
+            <CarDetailName>{car.name}</CarDetailName>
           </CarDescription>
           <CarRent>
-            <CarRentPeriod>AO DIA</CarRentPeriod>
-            <CarRentValue>R$ 230,00</CarRentValue>
+            <CarRentPeriod>{car.rent.period}</CarRentPeriod>
+            <CarRentValue>{car.rent.price}</CarRentValue>
           </CarRent>
         </Details>
-        <CarAcessoriesContainer>
-          <Acessory name='Teste' icon={SpeedSvg} />
-          <Acessory name='Teste' icon={AccelerationSvg} />
-          <Acessory name='Teste' icon={ForceSvg} />
-          <Acessory name='Teste' icon={GasolineSvg} />
-          <Acessory name='Teste' icon={ExchangeSvg} />
-          <Acessory name='Teste' icon={PeopleSvg} />
-        </CarAcessoriesContainer>
+        <CarAccessoriesContainer>
+          {car.accessories.map((accessory) => (
+            <Accessory
+              key={accessory.type}
+              name={accessory.name}
+              icon={getAccessoryIcon(accessory.type)}
+            />
+          ))}
+        </CarAccessoriesContainer>
         <SchedulingPeriod>
           <CalendarIconContainer>
             <Feather name="calendar" size={RFValue(24)} color={colors.shape} />
