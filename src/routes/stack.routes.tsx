@@ -8,6 +8,7 @@ import { Scheduling } from '../screens/Scheduling';
 import { SchedulingDetails } from '../screens/SchedulingDetails';
 import { SchedulingComplete } from '../screens/SchedulingComplete';
 import { CarDTO } from '../dtos/CarDTO';
+import { MyCars } from '../screens/MyCars';
 
 export type CarDetailsParams = {
   car: CarDTO
@@ -24,6 +25,7 @@ export type SchedulingDetailsParams = {
 
 export type RootStackParamList = {
   Home: undefined;
+  MyCars: undefined;
   CarDetails: CarDetailsParams;
   Scheduling: SchedulingParams;
   SchedulingDetails: SchedulingDetailsParams;
@@ -36,6 +38,7 @@ export function StackRoutes() {
   return (
     <Navigator screenOptions={{ headerShown: false }} >
       <Screen name="Home" component={Home} />
+      <Screen name="MyCars" component={MyCars} />
       <Screen name="CarDetails" component={CarDetails} />
       <Screen name="Scheduling" component={Scheduling} />
       <Screen name="SchedulingDetails" component={SchedulingDetails} />
