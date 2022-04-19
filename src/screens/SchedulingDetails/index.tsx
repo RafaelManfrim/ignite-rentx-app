@@ -65,8 +65,17 @@ export function SchedulingDetails() {
         ...dates
       ]
 
-      await api.post(`/schedules_byuser/`, { car, user_id: 1 })
-      await api.put(`/schedules_bycars/${car.id}`, { id: car.id, unavailable_dates })
+      await api.post(`/schedules_byuser/`, {
+        car,
+        user_id: 1,
+        startDate: rentalPeriod.startFormatted,
+        endDate: rentalPeriod.endFormatted
+      })
+
+      await api.put(`/schedules_bycars/${car.id}`, {
+        id: car.id,
+        unavailable_dates
+      })
 
       navigation.navigate('SchedulingComplete')
     } catch (err) {

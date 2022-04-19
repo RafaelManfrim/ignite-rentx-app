@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Alert, StatusBar, FlatList } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useTheme } from 'styled-components';
+import { AntDesign } from "@expo/vector-icons"
 
 import { Car } from '../../components/Car';
 import { BackButton } from '../../components/BackButton';
@@ -17,7 +18,12 @@ import {
   MyCarsContent,
   MyCarsAppointments,
   MyCarsAppointmentsTitle,
-  MyCarsAppointmentsQuantity
+  MyCarsAppointmentsQuantity,
+  CarWrapper,
+  CarFooter,
+  CarFooterTitle,
+  CarFooterPeriod,
+  CarFooterDate
 } from './styles';
 import { Loading } from '../../components/Loading';
 
@@ -25,6 +31,8 @@ interface CarByUserProps {
   user_id: number
   id: number
   car: CarDTO
+  startDate: string
+  endDate: string
 }
 
 export function MyCars() {
@@ -74,13 +82,28 @@ export function MyCars() {
             keyExtractor={item => String(item.id)}
             showsVerticalScrollIndicator={false}
             renderItem={({ item }) => (
-              <Car
-                brand={item.car.brand}
-                fuel_type={item.car.fuel_type}
-                name={item.car.name}
-                rent={item.car.rent}
-                thumbnail={item.car.thumbnail}
-              />
+              <CarWrapper>
+                <Car
+                  brand={item.car.brand}
+                  fuel_type={item.car.fuel_type}
+                  name={item.car.name}
+                  rent={item.car.rent}
+                  thumbnail={item.car.thumbnail}
+                />
+                <CarFooter>
+                  <CarFooterTitle>Período</CarFooterTitle>
+                  <CarFooterPeriod>
+                    <CarFooterDate>{item.startDate}</CarFooterDate>
+                    <AntDesign
+                      name="arrowright"
+                      size={20}
+                      color={colors.title}
+                      style={{ marginHorizontal: 10 }}
+                    />
+                    <CarFooterDate>{item.endDate}</CarFooterDate>
+                  </CarFooterPeriod>
+                </CarFooter>
+              </CarWrapper>
             )}
           />
         )}
