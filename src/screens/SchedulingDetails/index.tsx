@@ -49,6 +49,7 @@ interface RentalPeriodState {
 
 export function SchedulingDetails() {
   const [rentalPeriod, setRentalPeriod] = useState<RentalPeriodState>({} as RentalPeriodState)
+  const [loading, setLoading] = useState(false)
   const navigation = useNavigation()
   const route = useRoute()
   const { colors } = useTheme()
@@ -58,6 +59,7 @@ export function SchedulingDetails() {
 
   async function handleConfirmRent() {
     try {
+      setLoading(true)
       const schedules_by_car = await api.get(`/schedules_bycars/${car.id}`)
 
       const unavailable_dates = [
@@ -82,6 +84,8 @@ export function SchedulingDetails() {
       console.log(err)
       Alert.alert('Houve um erro ao realizar o agendamento')
       navigation.navigate('Home')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -152,7 +156,13 @@ export function SchedulingDetails() {
         </SchedulePriceContainer>
       </CarContent>
       <DetailsFooter>
-        <Button title='Confirmar' color={colors.success} onPress={handleConfirmRent} />
+        <Button
+          title='Confirmar'
+          color={colors.success}
+          onPress={handleConfirmRent}
+          loading={loading}
+          enabled={!loading}
+        />
       </DetailsFooter>
     </SchedulingDetailsContainer>
   );
