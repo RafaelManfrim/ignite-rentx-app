@@ -62,14 +62,10 @@ export function Scheduling() {
   }
 
   function handleConfirmPeriod() {
-    if (!rentalPeriod.startFormatted || !rentalPeriod.endFormatted) {
-      Alert.alert("Selecione o intervalo do aluguel")
-    } else {
-      navigation.navigate('SchedulingDetails', {
-        car,
-        dates: Object.keys(marketDates)
-      })
-    }
+    navigation.navigate('SchedulingDetails', {
+      car,
+      dates: Object.keys(marketDates)
+    })
   }
 
   return (
@@ -98,7 +94,11 @@ export function Scheduling() {
         <Calendar markedDates={marketDates} onDayPress={handleChangeDate} />
       </SchedulingContent>
       <SchedulingFooter>
-        <Button title='Confirmar' onPress={handleConfirmPeriod} />
+        <Button
+          title='Confirmar'
+          onPress={handleConfirmPeriod}
+          enabled={!!rentalPeriod.endFormatted}
+        />
       </SchedulingFooter>
     </SchedulingContainer>
   );

@@ -7,14 +7,20 @@ import { ButtonContainer, ButtonTitle } from './styles';
 interface ButtonProps extends RectButtonProps {
   title: string;
   color?: string;
+  enabled?: boolean;
 }
 
-export function Button({ title, color, ...rest }: ButtonProps) {
+export function Button({ title, color, enabled = true, ...rest }: ButtonProps) {
   const { colors } = useTheme()
 
   return (
     <GestureHandlerRootView>
-      <ButtonContainer color={color ? color : colors.main} {...rest}>
+      <ButtonContainer
+        color={color ? color : colors.main}
+        enabled={enabled}
+        style={{ opacity: enabled ? 1 : .6 }}
+        {...rest}
+      >
         <ButtonTitle>{title}</ButtonTitle>
       </ButtonContainer>
     </GestureHandlerRootView>
