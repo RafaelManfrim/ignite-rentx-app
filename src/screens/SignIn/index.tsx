@@ -3,12 +3,14 @@ import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 
 import { Button } from '../../components/Button';
+import { Input } from '../../components/Input';
 
 import {
   SignInMainContainer,
   SignInHeader,
   SignInTitle,
   SignInSubTitle,
+  InputsArea,
   ButtonsArea
 } from './styles';
 
@@ -24,6 +26,10 @@ export function SignIn() {
           {'Faça seu login para começar \numa experiência incrível.'}
         </SignInSubTitle>
       </SignInHeader>
+      <InputsArea>
+        <Input iconName="mail" />
+        <Input iconName="mail" />
+      </InputsArea>
       <ButtonsArea>
         <Button
           title="Login"

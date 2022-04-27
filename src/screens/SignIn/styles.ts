@@ -27,4 +27,9 @@ export const SignInSubTitle = styled.Text`
   margin-top: 16px;
 `;
 
+export const InputsArea = styled.View`
+  width: 100%;
+  margin: 64px 0;
+`
+
 export const ButtonsArea = styled.View``;
