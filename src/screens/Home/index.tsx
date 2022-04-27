@@ -16,6 +16,7 @@ import { api } from '../../services/api';
 import Logo from '../../assets/logo.svg';
 import { Car } from '../../components/Car';
 import { Loading } from '../../components/Loading';
+import { LoadAnimation } from '../../components/LoadAnimation';
 
 import { HomeContainer, HomeHeader, HeaderContent, TotalCars, CarList } from './styles';
 import { CarDTO } from '../../dtos/CarDTO';
@@ -91,7 +92,7 @@ export function Home() {
         </HeaderContent>
       </HomeHeader>
       {loading ? (
-        <Loading />
+        <LoadAnimation />
       ) : (
         <CarList data={cars} keyExtractor={item => item.id} renderItem={({ item }) => (
           <Car brand={item.brand} name={item.name} rent={item.rent} thumbnail={item.thumbnail} fuel_type={item.fuel_type} onPress={() => handleCarDetails(item)} />
