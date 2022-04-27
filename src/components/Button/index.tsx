@@ -8,11 +8,12 @@ import { ButtonContainer, ButtonTitle } from './styles';
 interface ButtonProps extends RectButtonProps {
   title: string;
   color?: string;
+  light?: boolean
   enabled?: boolean;
   loading?: boolean;
 }
 
-export function Button({ title, color, enabled = true, loading = false, ...rest }: ButtonProps) {
+export function Button({ title, color, light = false, enabled = true, loading = false, ...rest }: ButtonProps) {
   const { colors } = useTheme()
 
   return (
@@ -26,7 +27,7 @@ export function Button({ title, color, enabled = true, loading = false, ...rest 
         {loading ? (
           <ActivityIndicator color={colors.shape} size={24} />
         ) : (
-          <ButtonTitle>{title}</ButtonTitle>
+          <ButtonTitle light={light}>{title}</ButtonTitle>
         )}
       </ButtonContainer>
     </GestureHandlerRootView>
