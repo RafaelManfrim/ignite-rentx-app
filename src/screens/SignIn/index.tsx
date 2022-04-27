@@ -27,8 +27,13 @@ export function SignIn() {
         </SignInSubTitle>
       </SignInHeader>
       <InputsArea>
-        <Input iconName="mail" />
-        <Input iconName="mail" />
+        <Input
+          iconName="mail"
+          placeholder="E-mail"
+          keyboardType='email-address'
+          autoCorrect={false}
+          autoCapitalize='none'
+        />
       </InputsArea>
       <ButtonsArea>
         <Button

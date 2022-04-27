@@ -14,7 +14,7 @@ interface InputProps extends TextInputProps {
   iconName: React.ComponentProps<typeof Feather>['name']
 }
 
-export function Input({ iconName }: InputProps) {
+export function Input({ iconName, ...rest }: InputProps) {
   const { colors } = useTheme()
 
   return (
@@ -22,8 +22,7 @@ export function Input({ iconName }: InputProps) {
       <InputIconContainer>
         <Icon name={iconName} size={24} color={colors.text_detail} />
       </InputIconContainer>
-      <InputTextContainer>
-      </InputTextContainer>
+      <InputTextContainer {...rest} />
     </InputContainer>
   );
 }
