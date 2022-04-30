@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native'
-import { GestureHandlerRootView, RectButtonProps } from 'react-native-gesture-handler';
+import { RectButtonProps } from 'react-native-gesture-handler';
 import { useTheme } from 'styled-components';
 
 import { ButtonContainer, ButtonTitle } from './styles';
@@ -10,24 +10,24 @@ interface ButtonProps extends RectButtonProps {
   color?: string;
   light?: boolean
   loading?: boolean;
+  enabled?: boolean;
 }
 
 export function Button({ title, color, light = false, enabled = true, loading = false, style, ...rest }: ButtonProps) {
   const { colors } = useTheme()
 
   return (
-    <GestureHandlerRootView>
-      <ButtonContainer
-        color={color ? color : colors.main}
-        style={[{ opacity: (enabled === false || loading === true) ? .6 : 1 }, style]}
-        {...rest}
-      >
-        {loading ? (
-          <ActivityIndicator color={colors.shape} size={24} />
-        ) : (
-          <ButtonTitle light={light}>{title}</ButtonTitle>
-        )}
-      </ButtonContainer>
-    </GestureHandlerRootView >
+    <ButtonContainer
+      color={color ? color : colors.main}
+      style={[{ opacity: (enabled === false || loading === true) ? .6 : 1 }, style]}
+      enabled={enabled}
+      {...rest}
+    >
+      {loading ? (
+        <ActivityIndicator color={colors.shape} size={24} />
+      ) : (
+        <ButtonTitle light={light}>{title}</ButtonTitle>
+      )}
+    </ButtonContainer>
   );
 }

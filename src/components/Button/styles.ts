@@ -10,7 +10,7 @@ interface ButtonTitleProps {
   light: boolean;
 }
 
-export const ButtonContainer = styled(RectButton) <ButtonContainerProps>`
+export const ButtonContainer = styled(RectButton)<ButtonContainerProps>`
   width: 100%;
 
   padding: ${RFValue(16)}px;

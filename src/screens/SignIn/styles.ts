@@ -39,4 +39,6 @@ export const InputsArea = styled.View`
   margin: ${RFValue(32)}px 0;
 `
 
-export const ButtonsArea = styled.View``;
+export const ButtonsArea = styled.View`
+  padding: 0 24px;
+`;

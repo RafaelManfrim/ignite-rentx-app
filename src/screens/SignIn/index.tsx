@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useTheme } from 'styled-components';
+import * as Yup from 'yup';
 import {
   StatusBar,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Alert,
 } from 'react-native';
 
 import { Button } from '../../components/Button';
@@ -25,6 +27,23 @@ export function SignIn() {
   const [password, setPassword] = useState('')
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
   const { colors } = useTheme()
+
+  async function handleSignIn() {
+    const schema = Yup.object().shape({
+      email: Yup.string().email('Digite um e-mail válido').required('E-mail obrigatório'),
+      password: Yup.string().required('Senha obrigatória')
+    })
+
+    try {
+      await schema.validate({ email, password })
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        return Alert.alert(`Houve um erro`, err.message)
+      } else {
+        Alert.alert('Erro ao autenticar', 'Ocorreu um erro ao fazer login, verifique as credenciais.')
+      }
+    }
+  }
 
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
@@ -76,25 +95,25 @@ export function SignIn() {
               value={password}
             />
           </InputsArea>
-          <ButtonsArea>
-            <Button
-              title="Login"
-              loading={false}
-              enabled={true}
-              onPress={() => { }}
-              style={{ marginBottom: 8 }}
-            />
-            <Button
-              title="Criar uma conta gratuíta"
-              loading={false}
-              enabled={true}
-              onPress={() => { }}
-              color={colors.background_secondary}
-              light
-            />
-          </ButtonsArea>
         </SignInMainContainer>
       </TouchableWithoutFeedback>
+      <ButtonsArea>
+        <Button
+          title="Login"
+          loading={false}
+          enabled={true}
+          onPress={handleSignIn}
+          style={{ marginBottom: 8 }}
+        />
+        <Button
+          title="Criar uma conta gratuíta"
+          loading={false}
+          enabled={true}
+          onPress={() => { }}
+          color={colors.background_secondary}
+          light
+        />
+      </ButtonsArea>
     </KeyboardAvoidingView>
   );
 }
