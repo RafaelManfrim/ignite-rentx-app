@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTheme } from 'styled-components';
 import {
   StatusBar,
@@ -23,7 +23,28 @@ import {
 export function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
   const { colors } = useTheme()
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setKeyboardVisible(true);
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardVisible(false);
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
 
   return (
     <KeyboardAvoidingView behavior='position' enabled>
@@ -31,7 +52,7 @@ export function SignIn() {
         <SignInMainContainer>
           <StatusBar translucent barStyle="dark-content" backgroundColor="transparent" />
           <SignInHeader>
-            <SignInTitle>{'Estamos \nquase lá'}</SignInTitle>
+            <SignInTitle>{!isKeyboardVisible && 'Estamos \nquase lá'}</SignInTitle>
             <SignInSubTitle>
               {'Faça seu login para começar \numa experiência incrível.'}
             </SignInSubTitle>
