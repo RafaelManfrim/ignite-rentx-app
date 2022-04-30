@@ -51,7 +51,7 @@ export function SignIn() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <SignInMainContainer>
           <StatusBar translucent barStyle="dark-content" backgroundColor="transparent" />
-          <SignInHeader>
+          <SignInHeader isKeyboardVisible={isKeyboardVisible}>
             <SignInTitle>{!isKeyboardVisible && 'Estamos \nquase lá'}</SignInTitle>
             <SignInSubTitle>
               {'Faça seu login para começar \numa experiência incrível.'}

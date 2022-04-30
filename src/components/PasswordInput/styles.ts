@@ -7,14 +7,14 @@ interface ContainerProps {
 }
 
 export const PasswordInputContainer = styled.View`
-  height: 56px;
+  height: ${RFValue(56)}px;
   margin-bottom: 8px;
   flex-direction: row;
 `
 
 export const PasswordInputIconContainer = styled.View<ContainerProps>`
-  width: 55px;
-  height: 56px;
+  width: ${RFValue(55)}px;
+  height: ${RFValue(56)}px;
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.background_secondary};

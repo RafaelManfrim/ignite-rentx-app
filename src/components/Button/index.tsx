@@ -9,19 +9,17 @@ interface ButtonProps extends RectButtonProps {
   title: string;
   color?: string;
   light?: boolean
-  enabled?: boolean;
   loading?: boolean;
 }
 
-export function Button({ title, color, light = false, enabled = true, loading = false, ...rest }: ButtonProps) {
+export function Button({ title, color, light = false, enabled = true, loading = false, style, ...rest }: ButtonProps) {
   const { colors } = useTheme()
 
   return (
     <GestureHandlerRootView>
       <ButtonContainer
         color={color ? color : colors.main}
-        enabled={enabled}
-        style={{ opacity: (enabled === false || loading === true) ? .6 : 1 }}
+        style={[{ opacity: (enabled === false || loading === true) ? .6 : 1 }, style]}
         {...rest}
       >
         {loading ? (
@@ -30,6 +28,6 @@ export function Button({ title, color, light = false, enabled = true, loading = 
           <ButtonTitle light={light}>{title}</ButtonTitle>
         )}
       </ButtonContainer>
-    </GestureHandlerRootView>
+    </GestureHandlerRootView >
   );
 }
