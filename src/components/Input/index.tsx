@@ -29,7 +29,6 @@ export function Input({ iconName, value, ...rest }: InputProps) {
   }
 
   useEffect(() => {
-    console.log(value)
     if (!isFilled && value) {
       setIsFilled(true)
     } else if (isFilled && !value) {

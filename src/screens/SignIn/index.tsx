@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTheme } from 'styled-components';
+import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
 import {
   StatusBar,
@@ -22,10 +23,12 @@ import {
   ButtonsArea
 } from './styles';
 
+
 export function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+  const navigation = useNavigation()
   const { colors } = useTheme()
 
   async function handleSignIn() {
@@ -43,6 +46,10 @@ export function SignIn() {
         Alert.alert('Erro ao autenticar', 'Ocorreu um erro ao fazer login, verifique as credenciais.')
       }
     }
+  }
+
+  function handleNewAccount() {
+    navigation.navigate('SignUpFirstStep')
   }
 
   useEffect(() => {
@@ -109,7 +116,7 @@ export function SignIn() {
           title="Criar uma conta gratuíta"
           loading={false}
           enabled={true}
-          onPress={() => { }}
+          onPress={handleNewAccount}
           color={colors.background_secondary}
           light
         />

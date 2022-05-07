@@ -9,6 +9,8 @@ import { CarDetails } from '../screens/CarDetails';
 import { Scheduling } from '../screens/Scheduling';
 import { SchedulingDetails } from '../screens/SchedulingDetails';
 import { SchedulingComplete } from '../screens/SchedulingComplete';
+import { FirstStep as SignUpFirstStep } from '../screens/SignUp/FirstStep';
+import { SecondStep as SignUpSecondStep } from '../screens/SignUp/SecondStep';
 
 import { CarDTO } from '../dtos/CarDTO';
 
@@ -25,6 +27,14 @@ export type SchedulingDetailsParams = {
   dates: string[]
 }
 
+export type SignUpSecondStepParams = {
+  user: {
+    name: string,
+    email: string,
+    driverLicense: string
+  }
+}
+
 export type RootStackParamList = {
   Splash: undefined;
   SignIn: undefined;
@@ -34,13 +44,15 @@ export type RootStackParamList = {
   Scheduling: SchedulingParams;
   SchedulingDetails: SchedulingDetailsParams;
   SchedulingComplete: undefined;
+  SignUpFirstStep: undefined;
+  SignUpSecondStep: SignUpSecondStepParams;
 };
 
 const { Screen, Navigator } = createStackNavigator<RootStackParamList>()
 
 export function StackRoutes() {
   return (
-    <Navigator screenOptions={{ headerShown: false }} initialRouteName='Home'>
+    <Navigator screenOptions={{ headerShown: false }} initialRouteName='SignIn'>
       <Screen name="Splash" component={Splash} />
       <Screen name="Home" component={Home} options={{ gestureEnabled: false }} />
       <Screen name="MyCars" component={MyCars} />
@@ -49,6 +61,8 @@ export function StackRoutes() {
       <Screen name="SchedulingDetails" component={SchedulingDetails} />
       <Screen name="SchedulingComplete" component={SchedulingComplete} />
       <Screen name="SignIn" component={SignIn} />
+      <Screen name="SignUpFirstStep" component={SignUpFirstStep} />
+      <Screen name="SignUpSecondStep" component={SignUpSecondStep} />
     </Navigator>
   )
 }
