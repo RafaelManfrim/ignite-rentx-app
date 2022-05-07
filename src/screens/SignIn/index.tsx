@@ -22,6 +22,7 @@ import {
   InputsArea,
   ButtonsArea
 } from './styles';
+import { useAuth } from '../../data/hooks/useAuth';
 
 
 export function SignIn() {
@@ -31,6 +32,8 @@ export function SignIn() {
   const navigation = useNavigation()
   const { colors } = useTheme()
 
+  const { signIn } = useAuth()
+
   async function handleSignIn() {
     const schema = Yup.object().shape({
       email: Yup.string().email('Digite um e-mail válido').required('E-mail obrigatório'),
@@ -39,6 +42,7 @@ export function SignIn() {
 
     try {
       await schema.validate({ email, password })
+      signIn({ email, password })
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         return Alert.alert(`Houve um erro`, err.message)

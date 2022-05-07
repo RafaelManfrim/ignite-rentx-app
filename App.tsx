@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components/native';
 
 import theme from './src/styles/theme';
 import { Routes } from './src/routes';
+import { AuthContextProvider } from './src/data/contexts/AuthContext';
 
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
@@ -25,7 +26,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      <AuthContextProvider>
+        <Routes />
+      </AuthContextProvider>
     </ThemeProvider>
   )
 } 
