@@ -20,6 +20,7 @@ import {
   FormTitle,
   SignUpButtonContainer
 } from './styles';
+import { api } from '../../../services/api';
 
 export function SecondStep() {
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
@@ -30,18 +31,18 @@ export function SecondStep() {
   const navigation = useNavigation()
   const route = useRoute()
 
-  const { user } = route.params as SignUpSecondStepParams
+  const { user: { name, email, driverLicense } } = route.params as SignUpSecondStepParams
 
   async function handleRegister() {
-    // Enviar para api
     try {
+      await api.post('/users/', { name, email, password, driver_license: driverLicense })
       navigation.navigate('Confirmation', {
         title: 'Conta criada',
         message: `Agora é só fazer login \ne aproveitar.`,
         nextScreen: 'SignIn'
       })
     } catch (err) {
-
+      Alert.alert('Opa', 'Não foi possível cadastrar.')
     }
   }
 
