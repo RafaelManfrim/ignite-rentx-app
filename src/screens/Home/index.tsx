@@ -95,7 +95,7 @@ export function Home() {
         <LoadAnimation />
       ) : (
         <CarList data={cars} keyExtractor={item => item.id} renderItem={({ item }) => (
-          <Car brand={item.brand} name={item.name} rent={item.rent} thumbnail={item.thumbnail} fuel_type={item.fuel_type} onPress={() => handleCarDetails(item)} />
+          <Car brand={item.brand} name={item.name} rent={{ period: item.period, price: item.price }} thumbnail={item.thumbnail} fuel_type={item.fuel_type} onPress={() => handleCarDetails(item)} />
         )} />
       )}
       <PanGestureHandler onGestureEvent={onGestureEvent}>

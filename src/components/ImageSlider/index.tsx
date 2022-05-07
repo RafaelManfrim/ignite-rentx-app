@@ -1,11 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { FlatList, ViewToken } from 'react-native';
+import { Photo } from '../../dtos/CarDTO';
 import { Bullet } from '../Bullet';
 
 import { ImageSliderContainer, ImageIndexes, CarImageWrapper, CarImage } from './styles';
 
 interface ImageSliderProps {
-  imagesUrl: string[];
+  imagesUrl: Photo[];
 }
 
 interface ChangeImageProps {
@@ -24,19 +25,19 @@ export function ImageSlider({ imagesUrl }: ImageSliderProps) {
   return (
     <ImageSliderContainer>
       <ImageIndexes>
-        {imagesUrl.map((_, index) => (
-          <Bullet active={index === imageIndex} key={index} />
+        {imagesUrl.map((item, index) => (
+          <Bullet active={index === imageIndex} key={item.id} />
         ))}
       </ImageIndexes>
       <FlatList
         horizontal
         data={imagesUrl}
-        keyExtractor={key => key}
+        keyExtractor={item => item.id}
         showsHorizontalScrollIndicator={false}
         onViewableItemsChanged={indexChanged.current}
-        renderItem={({ item: image }) => (
+        renderItem={({ item: item }) => (
           <CarImageWrapper>
-            <CarImage source={{ uri: image }} resizeMode='contain' />
+            <CarImage source={{ uri: item.photo }} resizeMode='contain' />
           </CarImageWrapper>
         )}
       />

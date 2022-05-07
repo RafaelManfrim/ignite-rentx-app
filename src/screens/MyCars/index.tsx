@@ -87,7 +87,7 @@ export function MyCars() {
                   brand={item.car.brand}
                   fuel_type={item.car.fuel_type}
                   name={item.car.name}
-                  rent={item.car.rent}
+                  rent={{ period: item.car.period, price: item.car.price }}
                   thumbnail={item.car.thumbnail}
                 />
                 <CarFooter>

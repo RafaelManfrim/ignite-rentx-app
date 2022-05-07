@@ -83,9 +83,9 @@ export function CarDetails() {
             <CarDetailName>{car.name}</CarDetailName>
           </CarDescription>
           <CarRent>
-            <CarRentPeriod>{car.rent.period}</CarRentPeriod>
+            <CarRentPeriod>{car.period}</CarRentPeriod>
             <CarRentValue>
-              {car.rent.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace('R$', 'R$ ')}
+              {car.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace('R$', 'R$ ')}
             </CarRentValue>
           </CarRent>
         </Details>

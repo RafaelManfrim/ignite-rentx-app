@@ -55,7 +55,7 @@ export function SchedulingDetails() {
   const { colors } = useTheme()
   const { car, dates } = route.params as SchedulingDetailsParams
 
-  const rentTotal = dates.length * car.rent.price
+  const rentTotal = dates.length * car.price
 
   async function handleConfirmRent() {
     try {
@@ -116,9 +116,9 @@ export function SchedulingDetails() {
             <CarDetailName>{car.name}</CarDetailName>
           </CarDescription>
           <CarRent>
-            <CarRentPeriod>{car.rent.period}</CarRentPeriod>
+            <CarRentPeriod>{car.period}</CarRentPeriod>
             <CarRentValue>
-              {car.rent.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace('R$', 'R$ ')}
+              {car.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }).replace('R$', 'R$ ')}
             </CarRentValue>
           </CarRent>
         </Details>
@@ -149,7 +149,7 @@ export function SchedulingDetails() {
           <SchedulePriceLabel>TOTAL</SchedulePriceLabel>
           <SchedulePriceDetails>
             <RentalPriceQuota>
-              {car.rent.price.toLocaleString('pt-BR', {
+              {car.price.toLocaleString('pt-BR', {
                 style: 'currency', currency: 'BRL'
               }).replace('R$', 'R$ ')} x{dates.length} {dates.length === 1 ? 'diária' : 'diárias'}
             </RentalPriceQuota>
