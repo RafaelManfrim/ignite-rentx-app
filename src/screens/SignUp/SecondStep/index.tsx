@@ -32,8 +32,17 @@ export function SecondStep() {
 
   const { user } = route.params as SignUpSecondStepParams
 
-  function handleRegister() {
+  async function handleRegister() {
     // Enviar para api
+    try {
+      navigation.navigate('Confirmation', {
+        title: 'Conta criada',
+        message: `Agora é só fazer login \ne aproveitar.`,
+        nextScreen: 'SignIn'
+      })
+    } catch (err) {
+
+    }
   }
 
   useEffect(() => {
