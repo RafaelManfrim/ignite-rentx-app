@@ -8,7 +8,7 @@ import { Bullet } from '../../../components/Bullet';
 import { PasswordInput } from '../../../components/PasswordInput';
 import { Button } from '../../../components/Button';
 
-import { SignUpSecondStepParams } from '../../../routes/stack.routes';
+import { SignUpSecondStepParams } from '../../../routes/app.stack.routes';
 
 import {
   SecondStepContainer,

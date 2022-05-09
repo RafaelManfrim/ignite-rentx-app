@@ -7,7 +7,7 @@ import DoneSvg from '../../assets/done.svg';
 
 import { ConfirmButton } from '../../components/ConfirmButton';
 
-import { ConfirmationParams } from '../../routes/stack.routes';
+import { ConfirmationParams } from '../../routes/app.stack.routes';
 
 import {
   ConfirmationContainer,

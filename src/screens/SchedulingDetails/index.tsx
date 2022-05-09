@@ -10,7 +10,7 @@ import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
 import { Button } from '../../components/Button';
 
-import { SchedulingDetailsParams } from '../../routes/stack.routes';
+import { SchedulingDetailsParams } from '../../routes/app.stack.routes';
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 
 import {

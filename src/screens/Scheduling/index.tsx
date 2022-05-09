@@ -9,7 +9,7 @@ import { BackButton } from '../../components/BackButton';
 import { Button } from '../../components/Button';
 import { Calendar, DayProps, MarkedDates } from '../../components/Calendar';
 import { generateInterval } from '../../components/Calendar/generateInterval';
-import { SchedulingParams } from '../../routes/stack.routes';
+import { SchedulingParams } from '../../routes/app.stack.routes';
 import { getPlatformDate } from '../../utils/getPlatformDate';
 
 import {

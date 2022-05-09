@@ -10,7 +10,7 @@ import Animated, {
   Extrapolate
 } from 'react-native-reanimated';
 
-import { CarDetailsParams } from '../../routes/stack.routes';
+import { CarDetailsParams } from '../../routes/app.stack.routes';
 
 import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
