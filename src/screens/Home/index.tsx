@@ -21,18 +21,29 @@ export function Home() {
   }
 
   useEffect(() => {
+    let isMounted = true
+
+
     async function loadCars() {
       try {
         const response = await api.get("/cars")
-        setCars(response.data)
+        if (isMounted) {
+          setCars(response.data)
+        }
       } catch (err) {
         console.log(err)
       } finally {
-        setLoading(false)
+        if (isMounted) {
+          setLoading(false)
+        }
       }
     }
 
     loadCars()
+
+    return () => {
+      isMounted = false
+    }
   }, [])
 
   return (
