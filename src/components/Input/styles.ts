@@ -30,11 +30,11 @@ export const Icon = styled(Feather)``;
 
 export const InputTextContainer = styled.TextInput<ContainerProps>`
   background-color: ${({ theme }) => theme.colors.background_secondary};
-  padding: 0 23px;
+  padding: 0 20px;
   flex: 1;
   color: ${({ theme }) => theme.colors.text};
   font-family: ${({ theme }) => theme.fonts.primary_400};
-  font-size: ${RFValue(15)}px;
+  font-size: ${RFValue(14)}px;
 
   ${({ theme, isFocused }) => isFocused && css`
     border-bottom-width: 2px; 

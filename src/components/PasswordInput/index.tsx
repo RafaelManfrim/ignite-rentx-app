@@ -49,6 +49,7 @@ export function PasswordInput({ iconName, value, ...rest }: InputProps) {
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         isFocused={isInputFocused}
+        autoCorrect={false}
       />
       <PasswordInputIconContainer isFocused={isInputFocused}>
         <ChangePasswordVisibilityButton onPress={() => setIsPasswordVisible(!isPasswordVisible)}>

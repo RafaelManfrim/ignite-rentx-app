@@ -8,7 +8,7 @@ import { Bullet } from '../../../components/Bullet';
 import { PasswordInput } from '../../../components/PasswordInput';
 import { Button } from '../../../components/Button';
 
-import { SignUpSecondStepParams } from '../../../routes/app.stack.routes';
+import { SignUpSecondStepParams } from '../../../routes/auth.routes';
 
 import {
   SecondStepContainer,
@@ -108,7 +108,7 @@ export function SecondStep() {
       </TouchableWithoutFeedback>
       <SignUpButtonContainer>
         <Button
-          title={'Cadastrar'}
+          title='Cadastrar'
           enabled={identicalPasswords}
           color={identicalPasswords ? colors.success : colors.main}
           onPress={handleRegister}
