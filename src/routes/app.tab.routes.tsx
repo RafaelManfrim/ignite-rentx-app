@@ -3,8 +3,8 @@ import { Platform } from 'react-native';
 import { useTheme } from 'styled-components';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { Home } from '../screens/Home';
 import { MyCars } from '../screens/MyCars';
+import { Profile } from '../screens/Profile';
 
 import { AppStackRoutes } from './app.stack.routes'
 
@@ -42,14 +42,14 @@ export function AppTabRoutes() {
           <HomeSvg width={24} height={24} fill={color} />
         )
       }} />
-      <Screen name="Profile" component={Home} options={{
-        tabBarIcon: ({ color }) => (
-          <ProfileSvg width={24} height={24} fill={color} />
-        )
-      }} />
       <Screen name="MyCars" component={MyCars} options={{
         tabBarIcon: ({ color }) => (
           <MyCarsSvg width={24} height={24} fill={color} />
+        )
+      }} />
+      <Screen name="Profile" component={Profile} options={{
+        tabBarIcon: ({ color }) => (
+          <ProfileSvg width={24} height={24} fill={color} />
         )
       }} />
     </Navigator>
