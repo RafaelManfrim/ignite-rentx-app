@@ -4,7 +4,7 @@ import Feather from '@expo/vector-icons/Feather'
 import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
-import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native';
+import { Alert, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native';
 
 import { useAuth } from '../../data/hooks/useAuth';
 
@@ -12,16 +12,15 @@ import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { BackButton } from '../../components/BackButton';
 import { PasswordInput } from '../../components/PasswordInput';
+import { LogoutButton } from '../../components/LogoutButton';
 
 import {
   ProfileMainContainer,
   ProfileHeader,
   ProfileHeaderTop,
   ProfileHeaderTitle,
-  LogoutButton,
   ProfilePhotoContainer,
   Photo,
-  CameraButton,
   ProfileContent,
   ProfileContentHeader,
   Option,
@@ -29,6 +28,7 @@ import {
   ProfileContentContainer,
   Content
 } from './styles';
+import { CameraButton } from '../../components/CameraButton';
 
 export function Profile() {
   const { user, signOut } = useAuth()
@@ -63,6 +63,15 @@ export function Profile() {
     navigation.goBack()
   }
 
+  async function handleProfileUpdate() {
+    console.log('entrou aqui 2')
+    try {
+
+    } catch (err) {
+      Alert.alert('Não foi possivel atualizar o perfil')
+    }
+  }
+
   return (
     <KeyboardAvoidingView behavior='position' enabled>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -71,15 +80,11 @@ export function Profile() {
             <ProfileHeaderTop>
               <BackButton color={colors.shape} onPress={handleGoBack} />
               <ProfileHeaderTitle>Editar Perfil</ProfileHeaderTitle>
-              <LogoutButton onPress={signOut}>
-                <Feather size={24} color={colors.shape} name='power' />
-              </LogoutButton>
+              <LogoutButton color={colors.shape} onPress={signOut} />
             </ProfileHeaderTop>
             <ProfilePhotoContainer>
               {!!avatar && <Photo source={{ uri: avatar }} />}
-              <CameraButton onPress={handleSelectAvatar}>
-                <Feather size={24} color={colors.shape} name='camera' />
-              </CameraButton>
+              <CameraButton color={colors.shape} onPress={handleSelectAvatar} />
             </ProfilePhotoContainer>
           </ProfileHeader>
           <ProfileContent>
@@ -131,7 +136,7 @@ export function Profile() {
                   />
                 </Content>
               )}
-              <Button title='Confirmar' />
+              <Button title='Salvar alterações' onPress={handleProfileUpdate} />
             </ProfileContentContainer>
           </ProfileContent>
         </ProfileMainContainer>

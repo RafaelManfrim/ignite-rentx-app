@@ -34,8 +34,6 @@ export const ProfileHeaderTitle = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary_600};
 `
 
-export const LogoutButton = styled(BorderlessButton as any)``
-
 export const ProfilePhotoContainer = styled.View`
   width: 180px;
   height: 180px;
@@ -48,18 +46,6 @@ export const Photo = styled.Image`
   width: 180px;
   height: 180px;
   border-radius: 90px;
-`
-
-export const CameraButton = styled(RectButton as any)`
-  background-color: ${({ theme }) => theme.colors.main};
-  width: 40px;
-  height: 40px;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  border-radius: 4px;
 `
 
 export const ProfileContent = styled.View`
