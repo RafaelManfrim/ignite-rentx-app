@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { Alert, StatusBar, FlatList } from 'react-native';
+import { Alert, StatusBar, FlatList, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useTheme } from 'styled-components';
 import { AntDesign } from "@expo/vector-icons"
@@ -44,7 +44,7 @@ export function MyCars() {
   useEffect(() => {
     async function loadCarsByUser() {
       try {
-        const response = await api.get('/schedules_byuser?user_id=1')
+        const response = await api.get('/rentals/')
         setCars(response.data)
       } catch (err) {
         console.log(err)
@@ -61,7 +61,9 @@ export function MyCars() {
     <MyCarsContainer>
       <MyCarsHeader>
         <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
-        <BackButton color={colors.shape} onPress={() => navigation.goBack()} />
+        <View style={{ height: 24, width: 24 }}>
+          <BackButton color={colors.shape} onPress={() => navigation.goBack()} />
+        </View>
         <MyCarsHeaderTitle>
           Seus agendamentos
         </MyCarsHeaderTitle>
