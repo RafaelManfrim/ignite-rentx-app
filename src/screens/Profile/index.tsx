@@ -3,7 +3,8 @@ import { useTheme } from 'styled-components';
 import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
-import { Alert, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native';
+import * as Yup from 'yup'
+import { Alert, Keyboard, KeyboardAvoidingView, StatusBar, TouchableWithoutFeedback } from 'react-native';
 
 import { useAuth } from '../../data/hooks/useAuth';
 
@@ -30,7 +31,7 @@ import {
 } from './styles';
 
 export function Profile() {
-  const { user, signOut } = useAuth()
+  const { user, signOut, updateUser } = useAuth()
 
   const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit')
   const [driverLicense, setDriverLicense] = useState(user.driver_license)
@@ -63,7 +64,27 @@ export function Profile() {
 
   async function handleProfileUpdate() {
     try {
-      console.log('entrou aqui')
+      const schema = Yup.object().shape({
+        driverLicense: Yup.string().required("CNH é obrigatória"),
+        name: Yup.string().required("Nome é obrigatório.")
+      })
+
+      const data = { name, driverLicense }
+      
+      await schema.validate(data)
+
+      await updateUser({
+        id: user.id,
+        user_id: user.user_id,
+        email: user.email,
+        name,
+        driver_license: driverLicense,
+        avatar,
+        token: user.token
+      })
+
+      Alert.alert('Sucesso!', 'Seu perfil foi atualizado')
+
     } catch (err) {
       Alert.alert('Não foi possivel atualizar o perfil')
     }
@@ -74,6 +95,7 @@ export function Profile() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ProfileMainContainer>
           <ProfileHeader>
+            <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
             <ProfileHeaderTop>
               <BackButton color={colors.shape} onPress={handleGoBack} />
               <ProfileHeaderTitle>Editar Perfil</ProfileHeaderTitle>

@@ -8,8 +8,10 @@ export const CameraButtonContainer = styled(RectButton)`
   height: 40px;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
   border-radius: 4px;
-  margin: 8px;
 `
 
 export const CameraButtonIcon = styled(Feather)``;

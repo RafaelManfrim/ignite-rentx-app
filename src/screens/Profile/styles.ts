@@ -39,7 +39,6 @@ export const ProfilePhotoContainer = styled.View`
   border-radius: 90px;
   margin-top: 40px;
   background-color: ${({ theme }) => theme.colors.shape};
-  align-items: flex-end;
 `
 
 export const Photo = styled.Image`

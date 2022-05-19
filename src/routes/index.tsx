@@ -10,7 +10,7 @@ export function Routes() {
 
   return (
     <NavigationContainer>
-      {user.id ? <AppTabRoutes /> : <AppAuthRoutes />}
+      {user.email ? <AppTabRoutes /> : <AppAuthRoutes />}
     </NavigationContainer>
   );
 }
