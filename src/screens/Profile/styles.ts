@@ -1,6 +1,5 @@
-import { BorderlessButton, RectButton } from 'react-native-gesture-handler'
 import { getStatusBarHeight } from 'react-native-iphone-x-helper'
-import { RFValue } from 'react-native-responsive-fontsize'
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize'
 import styled, { css } from 'styled-components/native'
 
 interface OptionProps {
@@ -14,7 +13,7 @@ export const ProfileMainContainer = styled.View`
 export const ProfileHeader = styled.View`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.header};
-  height: 227px;
+  height: ${RFPercentage(28)}px;
 
   padding: 0 24px;
   align-items: center;
@@ -40,6 +39,7 @@ export const ProfilePhotoContainer = styled.View`
   border-radius: 90px;
   margin-top: 40px;
   background-color: ${({ theme }) => theme.colors.shape};
+  align-items: flex-end;
 `
 
 export const Photo = styled.Image`

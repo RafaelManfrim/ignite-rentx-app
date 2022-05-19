@@ -48,7 +48,7 @@ export const CarDetailBrand = styled.Text`
 export const CarDetailName = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary_500};
   color: ${({ theme }) => theme.colors.title};
-  font-size: ${RFValue(24)}px;
+  font-size: ${RFValue(20)}px;
 `;
 
 export const CarRent = styled.View`
@@ -65,7 +65,7 @@ export const CarRentPeriod = styled.Text`
 export const CarRentValue = styled.Text`
   font-family: ${({ theme }) => theme.fonts.secondary_500};
   color: ${({ theme }) => theme.colors.main};
-  font-size: ${RFValue(24)}px;
+  font-size: ${RFValue(20)}px;
 `;
 
 export const CarAccessoriesContainer = styled.View`

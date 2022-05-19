@@ -39,21 +39,21 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     try {
       const response = await api.post('/sessions/', { email, password })
       const { token, user: userFromAPI } = response.data
-      setUser({ ...userFromAPI, token })
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
       const userCollection = database.get<UserModel>('users')
       await database.write(async () => {
         await userCollection.create((newUser) => {
-          newUser.user_id = user.id
-          newUser.name = user.name
-          newUser.email = user.email
-          newUser.driver_license = user.driver_license
-          newUser.avatar = user.avatar
+          newUser.user_id = userFromAPI.id
+          newUser.name = userFromAPI.name
+          newUser.email = userFromAPI.email
+          newUser.driver_license = userFromAPI.driver_license
+          newUser.avatar = userFromAPI.avatar
           newUser.token = token
         })
       })
 
+      setUser({ ...userFromAPI, token })
     } catch (error: any) {
       throw new Error(error)
     }
@@ -95,7 +95,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     async function loadUserData() {
       const userCollection = database.get<UserModel>('users')
       const response = await userCollection.query().fetch()
-
       if (response.length > 0) {
         const userData = response[0]._raw as unknown as User
         api.defaults.headers.common['Authorization'] = `Bearer ${userData.token}`

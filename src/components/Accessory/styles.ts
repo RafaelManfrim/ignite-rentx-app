@@ -1,9 +1,12 @@
+import { Dimensions } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native'
 
+const cardSize = Dimensions.get('screen').width * 28 / 100
+
 export const AccessoryContainer = styled.View`
-  width: 109px;
-  height: 92px;
+  width: ${cardSize}px;
+  height: ${cardSize}px;
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.background_primary};

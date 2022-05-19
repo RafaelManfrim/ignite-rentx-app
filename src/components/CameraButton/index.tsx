@@ -9,7 +9,7 @@ interface CameraButtonProps extends RectButtonProps {
 
 export function CameraButton({ color, ...rest }: CameraButtonProps) {
   return (
-    <GestureHandlerRootView>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <CameraButtonContainer {...rest}>
         <CameraButtonIcon name='camera' size={24} color={color} />
       </CameraButtonContainer>

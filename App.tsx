@@ -10,6 +10,7 @@ import { AuthContextProvider } from './src/data/contexts/AuthContext';
 
 import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -25,10 +26,12 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <AuthContextProvider>
-        <Routes />
-      </AuthContextProvider>
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider theme={theme}>
+        <AuthContextProvider>
+          <Routes />
+        </AuthContextProvider>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   )
 } 

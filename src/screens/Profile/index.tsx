@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useTheme } from 'styled-components';
-import Feather from '@expo/vector-icons/Feather'
 import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from '@react-navigation/native';
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
@@ -13,6 +12,7 @@ import { Button } from '../../components/Button';
 import { BackButton } from '../../components/BackButton';
 import { PasswordInput } from '../../components/PasswordInput';
 import { LogoutButton } from '../../components/LogoutButton';
+import { CameraButton } from '../../components/CameraButton';
 
 import {
   ProfileMainContainer,
@@ -28,21 +28,23 @@ import {
   ProfileContentContainer,
   Content
 } from './styles';
-import { CameraButton } from '../../components/CameraButton';
 
 export function Profile() {
   const { user, signOut } = useAuth()
 
   const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit')
+  const [driverLicense, setDriverLicense] = useState(user.driver_license)
   const [avatar, setAvatar] = useState(user.avatar)
   const [name, setName] = useState(user.name)
-  const [driverLicense, setDriverLicense] = useState(user.driver_license)
 
   const { colors } = useTheme()
   const navigation = useNavigation()
 
+  function handleGoBack() {
+    navigation.goBack()
+  }
+
   async function handleSelectAvatar() {
-    console.log('entrou aqui')
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
@@ -59,14 +61,9 @@ export function Profile() {
     }
   }
 
-  function handleGoBack() {
-    navigation.goBack()
-  }
-
   async function handleProfileUpdate() {
-    console.log('entrou aqui 2')
     try {
-
+      console.log('entrou aqui')
     } catch (err) {
       Alert.alert('Não foi possivel atualizar o perfil')
     }
