@@ -34,22 +34,22 @@ export const ProfileHeaderTitle = styled.Text`
 `
 
 export const ProfilePhotoContainer = styled.View`
-  width: 180px;
-  height: 180px;
-  border-radius: 90px;
-  margin-top: 40px;
+  width: ${RFValue(150)}px;
+  height: ${RFValue(150)}px;
+  border-radius: 9999px;
+  margin-top: ${RFValue(30)}px;
   background-color: ${({ theme }) => theme.colors.shape};
 `
 
 export const Photo = styled.Image`
-  width: 180px;
-  height: 180px;
-  border-radius: 90px;
+  width: ${RFValue(150)}px;
+  height: ${RFValue(150)}px;
+  border-radius: 9999px;
 `
 
-export const ProfileContent = styled.View`
+export const ProfileContent = styled.ScrollView`
   padding: 0 24px;
-  margin-top: 128px;
+  margin-top: ${RFValue(120)}px;
 `;
 
 export const ProfileContentHeader = styled.View`

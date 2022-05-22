@@ -11,6 +11,7 @@ import { AppStackRoutes } from './app.stack.routes'
 import HomeSvg from '../assets/home_navigator.svg'
 import MyCarsSvg from '../assets/car_navigator.svg'
 import ProfileSvg from '../assets/people_navigator.svg'
+import { RFValue } from 'react-native-responsive-fontsize';
 
 export type AppTabParamList = {
   Main: undefined;
@@ -32,24 +33,24 @@ export function AppTabRoutes() {
         tabBarShowLabel: false,
         tabBarStyle: {
           paddingVertical: Platform.OS === 'ios' ? 20 : 0,
-          height: 78,
+          height: RFValue(70),
           backgroundColor: colors.background_primary
         }
       }}
     >
       <Screen name="Main" component={AppStackRoutes} options={{
         tabBarIcon: ({ color }) => (
-          <HomeSvg width={24} height={24} fill={color} />
+          <HomeSvg width={RFValue(24)} height={RFValue(24)} fill={color} />
         )
       }} />
       <Screen name="MyCars" component={MyCars} options={{
         tabBarIcon: ({ color }) => (
-          <MyCarsSvg width={24} height={24} fill={color} />
+          <MyCarsSvg width={RFValue(24)} height={RFValue(24)} fill={color} />
         )
       }} />
       <Screen name="Profile" component={Profile} options={{
         tabBarIcon: ({ color }) => (
-          <ProfileSvg width={24} height={24} fill={color} />
+          <ProfileSvg width={RFValue(24)} height={RFValue(24)} fill={color} />
         )
       }} />
     </Navigator>
