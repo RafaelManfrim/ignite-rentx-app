@@ -35,6 +35,16 @@ interface AuthContextProviderProps {
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
   const [user, setUser] = useState<User>({} as User)
 
+  async function loadUserData() {
+    const userCollection = database.get<UserModel>('users')
+    const response = await userCollection.query().fetch()
+    if (response.length > 0) {
+      const userData = response[0]._raw as unknown as User
+      api.defaults.headers.common['Authorization'] = `Bearer ${userData.token}`
+      setUser(userData)
+    }
+  }
+
   async function signIn({ email, password }: SignInCredentials) {
     try {
       const response = await api.post('/sessions/', { email, password })
@@ -54,6 +64,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
       })
 
       setUser({ ...userFromAPI, token })
+      loadUserData()
     } catch (error: any) {
       throw new Error(error)
     }
@@ -92,16 +103,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
   }
 
   useEffect(() => {
-    async function loadUserData() {
-      const userCollection = database.get<UserModel>('users')
-      const response = await userCollection.query().fetch()
-      if (response.length > 0) {
-        const userData = response[0]._raw as unknown as User
-        api.defaults.headers.common['Authorization'] = `Bearer ${userData.token}`
-        setUser(userData)
-      }
-    }
-
     loadUserData()
   }, [])
 
