@@ -24,7 +24,7 @@ export const ProfileHeaderTop = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: ${getStatusBarHeight() + 32}px;
+  margin-top: ${getStatusBarHeight() + RFValue(24)}px;
 `
 
 export const ProfileHeaderTitle = styled.Text`
@@ -49,7 +49,7 @@ export const Photo = styled.Image`
 
 export const ProfileContent = styled.ScrollView`
   padding: 0 24px;
-  margin-top: ${RFValue(120)}px;
+  margin-top: ${RFValue(100)}px;
 `;
 
 export const ProfileContentHeader = styled.View`

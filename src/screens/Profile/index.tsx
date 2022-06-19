@@ -86,8 +86,20 @@ export function Profile() {
       Alert.alert('Sucesso!', 'Seu perfil foi atualizado')
 
     } catch (err) {
+      console.log(err)
       Alert.alert('Não foi possivel atualizar o perfil')
     }
+  }
+
+  async function handleSignOut() {
+    Alert.alert(
+      'Tem certeza?', 
+      'Se você sair, irá precisar de Internet para se conectar novamente.', 
+      [
+        { text: 'Cancelar', onPress: () => {} },
+        { text: 'Sair', onPress: () => signOut() }
+      ]
+    )
   }
 
   return (
@@ -99,7 +111,7 @@ export function Profile() {
             <ProfileHeaderTop>
               <BackButton color={colors.shape} onPress={handleGoBack} />
               <ProfileHeaderTitle>Editar Perfil</ProfileHeaderTitle>
-              <LogoutButton color={colors.shape} onPress={signOut} />
+              <LogoutButton color={colors.shape} onPress={handleSignOut} />
             </ProfileHeaderTop>
             <ProfilePhotoContainer>
               {!!avatar && <Photo source={{ uri: avatar }} />}
